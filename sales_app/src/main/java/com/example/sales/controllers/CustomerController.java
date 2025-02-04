@@ -1,8 +1,6 @@
 package com.example.sales.controllers;
 
 import com.example.sales.dto.CustomerDTO;
-import com.example.sales.entities.Customer;
-import com.example.sales.repositories.CustomerRepository;
 import com.example.sales.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
