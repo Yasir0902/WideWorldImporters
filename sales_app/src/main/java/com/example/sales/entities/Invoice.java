@@ -24,6 +24,10 @@ public class Invoice {
     private List<InvoiceLine> invoiceLines;
 
     @ManyToOne
-    @JoinColumn(name = "CustomerID")
+    @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID")
     private Customer customer;
+
+    @OneToOne
+    @JoinColumn(name = "InvoiceID", referencedColumnName = "InvoiceID", insertable = false, updatable = false)
+    private CustomerTransaction customerTransaction;
 }

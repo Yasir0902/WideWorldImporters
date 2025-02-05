@@ -21,6 +21,13 @@ public class Customer {
     @Column(name = "CustomerName")
     private String customerName;
 
+    @ManyToOne
+    @JoinColumn(name = "CustomerCategoryID", referencedColumnName = "CustomerCategoryID")
+    private CustomerCategory customerCategory;
+
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Order> orders;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    private List<Invoice> invoices;
 }
