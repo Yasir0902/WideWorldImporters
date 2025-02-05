@@ -18,10 +18,6 @@ public class OrderLine {
     @JoinColumn(name = "OrderID", nullable = false)
     private Order order;
 
-    @ManyToOne
-    @JoinColumn(name = "StockItemID")
-    private StockItem stockItem;
-
     @Column(name = "Quantity")
     private Integer quantity;
 }
