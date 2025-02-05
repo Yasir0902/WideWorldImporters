@@ -5,7 +5,6 @@ import lombok.Getter;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 public class OrderDTO {
@@ -18,6 +17,6 @@ public class OrderDTO {
         this.orderDate = order.getOrderDate();
         this.orderLines = order.getOrderLines().stream()
                 .map(OrderLineDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 }
