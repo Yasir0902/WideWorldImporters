@@ -22,12 +22,19 @@ public class Customer {
     private String customerName;
 
     @ManyToOne
-    @JoinColumn(name = "CustomerCategoryID", referencedColumnName = "CustomerCategoryID")
+    @JoinColumn(name = "CustomerCategoryID")
     private CustomerCategory customerCategory;
+
+    @ManyToOne
+    @JoinColumn(name = "BuyingGroupID")
+    private BuyingGroup buyingGroup;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Order> orders;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Invoice> invoices;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    private List<CustomerTransaction> transactions;
 }

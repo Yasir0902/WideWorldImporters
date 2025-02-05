@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -15,20 +14,11 @@ public class CustomerCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CustomerCategoryID")
-    private Long customerCategoryId;
+    private Long categoryId;
 
     @Column(name = "CustomerCategoryName")
-    private String customerCategoryName;
+    private String categoryName;
 
-    @Column(name = "LastEditedBy")
-    private Integer lastEditedBy;
-
-    @Column(name = "ValidFrom")
-    private LocalDateTime validFrom;
-
-    @Column(name = "ValidTo")
-    private LocalDateTime validTo;
-
-    @OneToMany(mappedBy = "customerCategory")
+    @OneToMany(mappedBy = "customerCategory", fetch = FetchType.LAZY)
     private List<Customer> customers;
 }

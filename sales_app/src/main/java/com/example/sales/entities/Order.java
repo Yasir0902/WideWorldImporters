@@ -18,7 +18,7 @@ public class Order {
     private Long orderId;
 
     @ManyToOne
-    @JoinColumn(name = "CustomerID", nullable = false)
+    @JoinColumn(name = "CustomerID")
     private Customer customer;
 
     @Column(name = "OrderDate")

@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "CustomerTransactions", schema = "Sales")
@@ -14,40 +15,22 @@ public class CustomerTransaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CustomerTransactionID")
-    private Long customerTransactionId;
+    private Long transactionId;
 
     @ManyToOne
-    @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID")
+    @JoinColumn(name = "CustomerID")
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "InvoiceID", referencedColumnName = "InvoiceID")
+    @JoinColumn(name = "InvoiceID")
     private Invoice invoice;
 
     @Column(name = "TransactionDate")
-    private LocalDateTime transactionDate;
+    private LocalDate transactionDate;
 
     @Column(name = "AmountExcludingTax")
-    private Double amountExcludingTax;
+    private BigDecimal amount;
 
     @Column(name = "TaxAmount")
-    private Double taxAmount;
-
-    @Column(name = "TransactionAmount")
-    private Double transactionAmount;
-
-    @Column(name = "OutstandingBalance")
-    private Double outstandingBalance;
-
-    @Column(name = "FinalizationDate")
-    private LocalDateTime finalizationDate;
-
-    @Column(name = "IsFinalized")
-    private Boolean isFinalized;
-
-    @Column(name = "LastEditedBy")
-    private Integer lastEditedBy;
-
-    @Column(name = "LastEditedWhen")
-    private LocalDateTime lastEditedWhen;
+    private BigDecimal taxAmount;
 }

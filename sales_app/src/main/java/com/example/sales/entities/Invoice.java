@@ -17,17 +17,17 @@ public class Invoice {
     @Column(name = "InvoiceID")
     private Long invoiceId;
 
+    @ManyToOne
+    @JoinColumn(name = "CustomerID")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "OrderID")
+    private Order order;
+
     @Column(name = "InvoiceDate")
     private LocalDate invoiceDate;
 
     @OneToMany(mappedBy = "invoice", fetch = FetchType.LAZY)
     private List<InvoiceLine> invoiceLines;
-
-    @ManyToOne
-    @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID")
-    private Customer customer;
-
-    @OneToOne
-    @JoinColumn(name = "InvoiceID", referencedColumnName = "InvoiceID", insertable = false, updatable = false)
-    private CustomerTransaction customerTransaction;
 }
