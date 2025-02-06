@@ -10,6 +10,7 @@ import java.util.List;
 public class OrderDTO {
     private Long orderId;
     private LocalDate orderDate;
+    private List<InvoiceDTO> orderInvoice;
     private List<OrderLineDTO> orderLines;
 
     public OrderDTO(Order order) {
@@ -17,6 +18,9 @@ public class OrderDTO {
         this.orderDate = order.getOrderDate();
         this.orderLines = order.getOrderLines().stream()
                 .map(OrderLineDTO::new)
+                .toList();
+        this.orderInvoice = order.getInvoices().stream()
+                .map(InvoiceDTO::new)
                 .toList();
     }
 }
