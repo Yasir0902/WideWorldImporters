@@ -1,5 +1,6 @@
 package com.example.sales.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,11 +18,13 @@ public class CustomerTransaction {
     @Column(name = "CustomerTransactionID")
     private Long transactionId;
 
-    @ManyToOne
+    @JsonBackReference("customer-transactions")
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CustomerID")
     private Customer customer;
 
-    @ManyToOne
+    @JsonBackReference("invoice-transactions")
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "InvoiceID")
     private Invoice invoice;
 

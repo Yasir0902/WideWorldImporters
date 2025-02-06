@@ -1,5 +1,6 @@
 package com.example.sales.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class CustomerCategory {
     @Column(name = "CustomerCategoryName")
     private String categoryName;
 
+    @JsonBackReference("customer-category")
     @OneToMany(mappedBy = "customerCategory", fetch = FetchType.LAZY)
     private List<Customer> customers;
 }

@@ -1,10 +1,13 @@
 package com.example.sales.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,13 +20,15 @@ public class Order {
     @Column(name = "OrderID")
     private Long orderId;
 
-    @ManyToOne
+    @JsonBackReference("customer-orders")
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CustomerID")
     private Customer customer;
 
     @Column(name = "OrderDate")
     private LocalDate orderDate;
 
+    @JsonManagedReference("order-lines")
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
-    private List<OrderLine> orderLines;
+    private List<OrderLine> orderLines = new ArrayList<>();
 }
