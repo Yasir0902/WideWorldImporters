@@ -1,5 +1,6 @@
 package com.example.sales.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,8 @@ public class InvoiceLine {
     @Column(name = "InvoiceLineID")
     private Long invoiceLineId;
 
-    @ManyToOne
+    @JsonBackReference("invoice-lines")
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "InvoiceID")
     private Invoice invoice;
 

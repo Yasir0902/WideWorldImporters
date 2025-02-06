@@ -8,6 +8,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class CustomerService {
     @Autowired
@@ -28,4 +32,19 @@ public class CustomerService {
                 .orElseThrow(() -> new RuntimeException(""));
         return new CustomerDTO(customer);
     }
+
+    public List<CustomerDTO> getAllCustomersWithFullHierarchy(Pageable pageable) {
+        Page<Customer> customers = customerRepository.findAll(pageable);
+        return customers.stream()
+                .map(CustomerDTO::new)
+                .collect(Collectors.toList());
+    }
+
+
+    public List<CustomerDTO> getSpecificCustomer(Long id) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
+        return List.of(new CustomerDTO(customer));
+    }
+
 }

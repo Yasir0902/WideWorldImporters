@@ -1,8 +1,11 @@
 package com.example.sales.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "OrderLines", schema = "Sales")
@@ -14,14 +17,17 @@ public class OrderLine {
     @Column(name = "OrderLineID")
     private Long orderLineId;
 
-    @ManyToOne
-    @JoinColumn(name = "OrderID", nullable = false)
+    @JsonBackReference("order-lines")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "OrderID")
     private Order order;
 
-    @ManyToOne
-    @JoinColumn(name = "StockItemID")
-    private StockItem stockItem;
+    @Column(name = "StockItemID")
+    private Long stockItemId;
 
     @Column(name = "Quantity")
     private Integer quantity;
+
+    @Column(name = "UnitPrice")
+    private BigDecimal unitPrice;
 }

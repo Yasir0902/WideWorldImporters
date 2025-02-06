@@ -5,7 +5,6 @@ import lombok.Getter;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 public class InvoiceDTO {
@@ -18,6 +17,6 @@ public class InvoiceDTO {
         this.invoiceDate = invoice.getInvoiceDate();
         this.invoiceLines = invoice.getInvoiceLines().stream()
                 .map(InvoiceLineDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

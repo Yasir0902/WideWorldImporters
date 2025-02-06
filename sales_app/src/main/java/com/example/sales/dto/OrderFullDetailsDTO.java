@@ -7,16 +7,22 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Getter
-public class OrderDTO {
+public class OrderFullDetailsDTO {
     private Long orderId;
     private LocalDate orderDate;
+    private CustomerDTO customer;
     private List<OrderLineDTO> orderLines;
+    private List<CustomerTransactionDTO> customerTransactions;
 
-    public OrderDTO(Order order) {
+    public OrderFullDetailsDTO(Order order) {
         this.orderId = order.getOrderId();
         this.orderDate = order.getOrderDate();
+        this.customer = new CustomerDTO(order.getCustomer());
         this.orderLines = order.getOrderLines().stream()
                 .map(OrderLineDTO::new)
+                .toList();
+        this.customerTransactions = order.getCustomer().getTransactions().stream()
+                .map(CustomerTransactionDTO::new)
                 .toList();
     }
 }
