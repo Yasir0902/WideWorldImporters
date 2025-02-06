@@ -28,6 +28,9 @@ public class Order {
     @Column(name = "OrderDate")
     private LocalDate orderDate;
 
+    @OneToMany(mappedBy = "order",fetch = FetchType.LAZY)
+    private List<Invoice> invoices = new ArrayList<>();
+
     @JsonManagedReference("order-lines")
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     private List<OrderLine> orderLines = new ArrayList<>();
