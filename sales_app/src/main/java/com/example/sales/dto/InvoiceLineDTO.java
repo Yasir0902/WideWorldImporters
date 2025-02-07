@@ -14,7 +14,7 @@ public class InvoiceLineDTO {
 
     public InvoiceLineDTO(InvoiceLine invoiceLine) {
         this.invoiceLineId = invoiceLine.getInvoiceLineId();
-        this.stockItemId = invoiceLine.getStockItemId();
+        this.stockItemId = invoiceLine.getStockItems().getStockItemId();
         this.quantity = invoiceLine.getQuantity();
         this.unitPrice = invoiceLine.getUnitPrice();
     }

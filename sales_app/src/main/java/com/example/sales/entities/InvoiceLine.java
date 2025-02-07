@@ -22,12 +22,14 @@ public class InvoiceLine {
     @JoinColumn(name = "InvoiceID")
     private Invoice invoice;
 
-    @Column(name = "StockItemID")
-    private Long stockItemId;
-
     @Column(name = "Quantity")
     private Integer quantity;
 
     @Column(name = "UnitPrice")
     private BigDecimal unitPrice;
+
+    @JsonBackReference("stockItemsInvoice")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "StockItemID")
+    private StockItems stockItems;
 }
