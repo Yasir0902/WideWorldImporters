@@ -14,26 +14,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@NamedEntityGraph(
-        name = "Customer.fullHierarchy",
-        attributeNodes = {
-                @NamedAttributeNode("customerCategory"),
-                @NamedAttributeNode("buyingGroup"),
-                @NamedAttributeNode(value = "orders", subgraph = "orders-subgraph"),
-                @NamedAttributeNode(value = "invoices", subgraph = "invoices-subgraph"),
-                @NamedAttributeNode("transactions")
-        },
-        subgraphs = {
-                @NamedSubgraph(
-                        name = "orders-subgraph",
-                        attributeNodes = @NamedAttributeNode("orderLines")
-                ),
-                @NamedSubgraph(
-                        name = "invoices-subgraph",
-                        attributeNodes = @NamedAttributeNode("invoiceLines")
-                )
-        }
-)
 public class Customer {
 
     @Id

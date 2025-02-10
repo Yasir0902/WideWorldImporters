@@ -12,7 +12,7 @@ public class InvoiceFullDetailsDTO {
     private Long invoiceId;
     private LocalDate invoiceDate;
     private List<InvoiceLineDTO> invoiceLines;
-    @JsonIgnoreProperties(value = { "orders", "invoices", "transactions", "category", "buyingGroup" })
+    @JsonIgnoreProperties(value = {"orders", "invoices", "transactions", "category", "buyingGroup"})
     private CustomerDTO customer;
     @JsonIgnoreProperties(value = {"orderInvoice"})
     private OrderDTO order;

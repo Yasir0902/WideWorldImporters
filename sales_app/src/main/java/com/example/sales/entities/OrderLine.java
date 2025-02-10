@@ -30,4 +30,7 @@ public class OrderLine {
 
     @Column(name = "UnitPrice")
     private BigDecimal unitPrice;
+
+    @Column(name = "Description")
+    private String description;
 }

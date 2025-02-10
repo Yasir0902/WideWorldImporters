@@ -11,11 +11,13 @@ public class OrderLineDTO {
     private Long stockItemId;
     private Integer quantity;
     private BigDecimal unitPrice;
+    private String description;
 
     public OrderLineDTO(OrderLine orderLine) {
         this.orderLineId = orderLine.getOrderLineId();
         this.stockItemId = orderLine.getStockItemId();
         this.quantity = orderLine.getQuantity();
         this.unitPrice = orderLine.getUnitPrice();
+        this.description = orderLine.getDescription();
     }
 }
